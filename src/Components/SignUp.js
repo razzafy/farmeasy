@@ -25,7 +25,7 @@ const SignUp = () => {
     }
   };
   return (
-    <div style={{ backgroundColor: "#007f00", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#004c00", minHeight: "100vh" }}>
       <nav style={{ backgroundColor: "#007f00", padding: "20px", textAlign: "center" }}>
         <ul style={{ listStyleType: "none", margin: 0, padding: 0 }}>
           <li style={{ display: "inline", marginRight: "20px" }}>
