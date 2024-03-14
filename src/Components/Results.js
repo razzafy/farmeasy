@@ -34,7 +34,7 @@ const Results = () => {
   
   return (
   
-    <div style={{ backgroundColor: '#007f00', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#004c00', minHeight: '100vh' }}>
        <nav style={{ backgroundColor: '#007f00', padding: '20px', textAlign: 'center' }}>
         <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
           <li style={{ display: 'inline', marginRight: '20px' }}><Link to="/" style={{ color: 'white', textDecoration: 'none', fontSize: '18px' }}>Home</Link></li>
@@ -42,6 +42,7 @@ const Results = () => {
           <li style={{ display: 'inline', marginRight: '20px' }}><Link to="/about" style={{ color: 'white', textDecoration: 'none', fontSize: '18px' }}>About</Link></li>
           <li style={{ display: 'inline', marginRight: '20px' }}><Link to="/contact" style={{ color: 'white', textDecoration: 'none', fontSize: '18px' }}>Contact</Link></li>
           <li style={{ display: 'inline', marginRight: '20px' }}><Link to="/help" style={{ color: 'white', textDecoration: 'none', fontSize: '18px' }}>Help</Link></li>
+          <li style={{ display: 'inline', marginRight: '2px'}}><Link to="/login" style={{ color: 'white', textDecoration: 'none', fontSize: '18px' }}>Logout</Link></li>
         </ul>
       </nav>
   

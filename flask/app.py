@@ -4,30 +4,45 @@ import pickle
 from flask_cors import CORS
 
 # loading models
-dtr = pickle.load(open('D:\\farmeasy\\flask\\dtr.pkl', 'rb'))
-preprocessor = pickle.load(open('D:\\farmeasy\\flask\\preprocessor.pkl', 'rb'))
+dtr = pickle.load(open('E:\\Projects\\farmeasy\\flask\\dtr.pkl', 'rb'))
+preprocessor = pickle.load(open('E:\\Projects\\farmeasy\\flask\\preprocessor.pkl', 'rb'))
 
 # flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins='http://localhost:3000')
+
 
 @app.route("/predict", methods=['POST'])
 def predict():
     if request.method == 'POST':
-        # Parsing JSON data from request body
-        data = request.get_json()
-        Year = float(data['Year'])
-        average_rain_fall_mm_per_year = float(data['average_rain_fall_mm_per_year'])
-        pesticides_tonnes = float(data['pesticides_tonnes'])
-        avg_temp = float(data['avg_temp'])
-        Area = data['Area']
-        Item = data['Item']
+        if request.is_json:
+            data = request.json
+        else:
+            data = request.form
+        
+        Year = float(data.get('Year', 0))
+        average_rain_fall_mm_per_year = float(data.get('average_rain_fall_mm_per_year', 0))
+        pesticides_tonnes = float(data.get('pesticides_tonnes', 0))
+        avg_temp = float(data.get('avg_temp', 0))
+        Area = (data.get('Area', 0))
+        Item = (data.get('Item', 0))
 
         features = np.array([[Year, average_rain_fall_mm_per_year, pesticides_tonnes, avg_temp, Area, Item]])
         transformed_features = preprocessor.transform(features)
         prediction = dtr.predict(transformed_features).tolist()  # Convert to list for JSON serialization
 
         return jsonify({'prediction': prediction})
+    else:
+        return jsonify({'error': 'Method Not Allowed'}), 405
+
+
+@app.route("/result", methods=['POST'])
+def get_result():
+    if request.method == 'POST':
+        # Perform some computation or retrieve data
+        result = "This is the result"
+        return jsonify({'result': result})
+
 
 if __name__ == "__main__":
     app.run(debug=True)

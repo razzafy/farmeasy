@@ -23,7 +23,8 @@ const LoginForm = () => {
    .then((user)=>
    {
     console.log(user);
-    navigate('/results');
+    navigate('/dashboard');
+    //navigate('/results');
    })
    .catch((err)=>
    {
